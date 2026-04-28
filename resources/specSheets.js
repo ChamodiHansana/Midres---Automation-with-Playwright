@@ -12,7 +12,6 @@ exports.SpecSheetsPage = class SpecSheetsPage {
         this.spec_sheets_search_input_form_la_cornue_folder = page.getByRole('searchbox', { name: 'Search Spec Sheets' });
         this.spec_sheets_search_input_button = page.getByTestId('search-btn');
 
-        // this.breadcrumb_spec_sheets = page.getByLabel('breadcrumb').getByRole('link', { name: 'Spec Sheets' }).click();
         this.chamodhi_folder = page.getByLabel('Chamodhi folder', { exact: true });
         this.filter = page.getByTestId('search-input').getByRole('button');
 
@@ -41,7 +40,6 @@ exports.SpecSheetsPage = class SpecSheetsPage {
     async navigateToSpecSheetsPage() {
         await this.spec_sheets_link.click();
         await expect(this.spec_sheets_heading).toBeVisible();
-        // await this.page.waitForTimeout(3000); // Wait 3 seconds for page to settle
     }
 
     async searchSpecSheets(search) {
@@ -68,71 +66,34 @@ exports.SpecSheetsPage = class SpecSheetsPage {
         await this.new_folder_name_textbox.type('PlaywrightTest Folder', { delay: 200 });
         await this.create_button.click();
         await this.page.waitForTimeout(2000);
-        // await expect(this.toast_message).toBeVisible();
     }
 
 
-
     async renameFolders() {
-
-        /*
-                await this.page.waitForTimeout(2000);
-                await this.spec_sheets_search_input.fill('');
-                await this.page.waitForTimeout(2000);
-                await this.spec_sheets_search_input.click();
-                await this.spec_sheets_search_input_form_la_cornue_folder.type('playwright', { delay: 200 });
-                await this.spec_sheets_search_input_button.click();
-
-
-        */
         await this.page.waitForTimeout(2000);
         const renameMenuButton = this.page.locator('tr', { hasText: /playwright/i }).first().locator('.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-1ntbcta').first();
         await renameMenuButton.click();
-        //await this.page.waitForTimeout(2000); // Wait for action menu to load
         await this.rename_option.click();
-        //await this.page.waitForTimeout(2000);
-
         await this.spec_sheets_search_rename_folder_input.click();
         await this.spec_sheets_search_rename_folder_input.fill('');
         await this.spec_sheets_search_rename_folder_input.type('playwright Edit');
-        //await this.page.waitForTimeout(2000);
+        await this.page.waitForTimeout(2000);
         await this.rename_button.click();
-        // await expect(this.delete_success_message).toBeVisible();
     }
 
 
     async deleteFolders() {
-        /*
         await this.page.waitForTimeout(2000);
-        await this.spec_sheets_search_input.fill('');
-        await this.page.waitForTimeout(2000);
-        await this.spec_sheets_search_input.click();
-        await this.spec_sheets_search_input_form_la_cornue_folder.type('playwright', { delay: 200 });
-        await this.spec_sheets_search_input_button.click();
-        */
-
-        await this.page.waitForTimeout(2000);
-
         const deleteMenuButton = this.page.locator('tr', { hasText: /playwright/i }).first().locator('.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-1ntbcta').first();
         await deleteMenuButton.click();
-        await this.page.waitForTimeout(2000);
         await this.delete_option.click();
-        await this.page.waitForTimeout(2000);
         await this.delete_confirm_button.click();
-        await this.page.waitForTimeout(2000);
-        // await expect(this.delete_success_message).toBeVisible();
     }
-
-
-    //navigate to back
 
     async navigateBack() {
         await this.page.getByRole('link', { name: 'LaCornue' }).click();
     }
 
-
-
-    //File upload functions
 
     async uploadFiles() {
 
@@ -143,21 +104,8 @@ exports.SpecSheetsPage = class SpecSheetsPage {
         await this.spec_sheets_search_input_button.click();
         await this.page.waitForTimeout(2000);
         await this.page.getByLabel('PlaywrightTest Folder', { exact: true }).click();
-
-
-
         await this.page.waitForTimeout(3000);
-        //  await this.create_folder_button.click();
-        // await this.file_upload_option.click();
-        // await this.page.waitForTimeout(1000);
-
-
         await this.file_input.setInputFiles(path.join('resources', 'samplePDF.pdf'));
-
-
-        //await this.file_input.setInputFiles([]);
-        //await this.page.keyboard.press('Escape');
-
         await this.page.waitForTimeout(5000);
         await this.reject_button.click();
 
@@ -165,7 +113,6 @@ exports.SpecSheetsPage = class SpecSheetsPage {
 
 
     async previewFiles() {
-        //await this.page.getByTestId('asset-table-tbody').getByRole('button').filter({ hasText: /^$/ }).click();
         await this.page.waitForTimeout(2000);
         await this.page.getByRole('cell').nth(4).click();
         await this.page.getByTestId('menu-item-preview').click();
@@ -178,9 +125,6 @@ exports.SpecSheetsPage = class SpecSheetsPage {
         await this.page.getByRole('cell').nth(4).click();
         await this.page.getByTestId('menu-item-download').click();
         await this.page.waitForTimeout(2000);
-
-
-
     }
 
     async shareFiles() {
@@ -188,55 +132,94 @@ exports.SpecSheetsPage = class SpecSheetsPage {
         await this.page.waitForTimeout(2000);
         await this.page.getByRole('cell').nth(4).click();
         await this.page.getByTestId('menu-item-share').click();
-        await this.page.waitForTimeout(2000);
         await this.page.getByRole('heading', { name: 'Share Resources' }).click();
-        await this.page.waitForTimeout(2000);
         await this.page.getByRole('textbox', { name: 'Receiver Email' }).click();
-        await this.page.waitForTimeout(2000);
         await this.page.getByRole('textbox', { name: 'Receiver Email' }).fill('isunihasara@gmail.com');
         await this.page.waitForTimeout(2000);
         await this.page.getByTestId('add-btn').click();
-        await this.page.waitForTimeout(2000);
         await this.page.getByRole('textbox', { name: 'Title' }).click();
-        await this.page.waitForTimeout(2000);
         await this.page.getByRole('textbox', { name: 'Title' }).fill('test title');
         await this.page.waitForTimeout(2000);
         await this.page.getByRole('textbox', { name: 'Message' }).click();
-        await this.page.waitForTimeout(2000);
         await this.page.getByRole('textbox', { name: 'Message' }).fill('msg');
-        //await this.page.waitForTimeout(2000);
-        //await this.page.getByRole('button', { name: 'Choose date' }).click();
-        //await this.page.waitForTimeout(2000);
-
-        //await this.page.getByRole('textbox', { name: 'Expiration Date' }).fill('05/14/7');
-
-        // await this.page.waitForTimeout(5000);
+        await this.page.waitForTimeout(2000);
         await this.page.getByTestId('save-btn').click();
-        //await this.page.waitForTimeout(4000);
-        //await this.page.getByText('Spec sheets shared').click();
-        //await this.page.waitForTimeout(2000);
-
 
     }
 
     async addToFavorites() {
+        //await this.page.waitForTimeout(2000);
+        await this.page.getByRole('cell').nth(4).click();
+        await this.page.getByTestId('menu-item-add-to-list').click();
+        await this.page.getByTestId('add-to-my-list-txt').click();
+        await this.page.getByRole('textbox', { name: 'Create a New List' }).click();
+        await this.page.getByRole('textbox', { name: 'Create a New List' }).fill('Automate Test List');
+        await this.page.getByTestId('add-to-list-btn').click();
+        await this.page.getByRole('button', { name: 'My List' }).click();
+        await this.page.getByRole('button', { name: 'Automate Test List' }).click();
+        await this.page.getByLabel('samplePDF.pdf', { exact: true }).click();
+        await this.page.getByTestId('cancel-btn').click();
+        await this.page.getByLabel('breadcrumb').getByRole('link', { name: 'Spec Sheets' }).click();
+
+
+        await this.brand_folders.click();
+
+
 
     }
 
     async tagFiles() {
 
+        await this.page.waitForTimeout(2000);
+        await this.page.getByLabel('PlaywrightTest Folder', { exact: true }).click();
+        await this.page.getByRole('cell').nth(4).click();
+        await this.page.getByTestId('menu-item-tag').click();
+        await this.page.getByRole('combobox', { name: 'Name' }).click({ force: true });
+        await this.page.getByRole('combobox', { name: 'Name' }).fill('TEST Name');
+        //await this.page.waitForTimeout(2000);
+        await this.page.getByRole('combobox', { name: 'Value' }).click({ force: true });
+        await this.page.getByRole('combobox', { name: 'Value' }).fill('Test Value');
+        //await this.page.waitForTimeout(2000);
+        await this.page.getByRole('button').nth(2).click();
+        await this.page.getByTestId('save-btn').click();
+        //await this.page.waitForTimeout(5000);
+        //await this.page.getByText('Tags updated successfully.').click();
+
+
     }
 
     async renameFiles() {
+        //await this.page.waitForTimeout(2000);
+        await this.page.getByLabel('PlaywrightTest Folder', { exact: true }).click();
+        await this.page.getByRole('cell').nth(4).click();
+        await this.page.getByTestId('menu-item-rename').click({ force: true });
+        await this.page.getByRole('textbox', { name: 'Name' }).click();
+        await this.page.getByRole('textbox', { name: 'Name' }).fill('samplePDFEdit');
+        await this.page.getByTestId('create-btn').click();
+        //await this.page.waitForTimeout(4000);
+        //await this.page.getByText('Spec sheet file updated').click();
+
 
     }
 
     async updateThumbnails() {
-
+        //await this.page.waitForTimeout(2000);
+        await this.page.getByLabel('PlaywrightTest Folder', { exact: true }).click();
+        await this.page.getByRole('cell').nth(4).click();
+        await this.page.getByTestId('menu-item-thumbnail').click({ force: true });
+        //await this.page.getByText('Upload Image').click();
+        await this.file_input.setInputFiles(path.join('resources', 'sampleImage.jpg'));
+        await this.page.waitForTimeout(5000);
+        await this.reject_button.click();
     }
 
     async deleteFiles() {
-
+        //await this.page.waitForTimeout(2000);
+        await this.page.getByLabel('PlaywrightTest Folder', { exact: true }).click();
+        await this.page.getByRole('cell').nth(4).click();
+        await this.page.getByTestId('menu-item-delete').click({ force: true });
+        await this.page.getByRole('button', { name: 'Delete' }).click();
+        // await this.page.getByText('Spec sheet(s) deleted').click();
     }
 
 
