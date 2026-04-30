@@ -1,0 +1,24 @@
+{
+  "name": "midres---automation-with-playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChamodiHansana/Midres---Automation-with-Playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ChamodiHansana/Midres---Automation-with-Playwright/issues"
+  },
+  "homepage": "https://github.com/ChamodiHansana/Midres---Automation-with-Playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.10",
+    "prettier": "^3.8.1"
+  }
+}
