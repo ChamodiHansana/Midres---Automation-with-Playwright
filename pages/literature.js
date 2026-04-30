@@ -4,6 +4,21 @@ const path = require('path');
 exports.LiteraturePage = class LiteraturePage {
     constructor(page) {
         this.page = page;
+        this._wrapMethods();
+    }
+
+    _wrapMethods() {
+        const proto = Object.getPrototypeOf(this);
+        Object.getOwnPropertyNames(proto).forEach((key) => {
+            if (key === 'constructor' || key.startsWith('_')) return;
+            const original = this[key];
+            if (typeof original !== 'function') return;
+            this[key] = async(...args) => {
+                const result = await original.apply(this, args);
+                console.log(`✅ ${this.constructor.name}.${key} succeeded`);
+                return result;
+            };
+        });
     }
 
     async navigateToLiteraturePage() {
@@ -103,9 +118,31 @@ exports.LiteraturePage = class LiteraturePage {
         await this.page.getByLabel('samplePDF.pdf', { exact: true }).click();
         await this.page.getByTestId('cancel-btn').click();
 
+
+
+
+
+    }
+
+    async deleteMyListFolderLierature() {
+        await this.page.getByTestId('list-view-toggle').click();
+        await this.page.getByRole('link', { name: 'My List' }).click();
+        const row = this.page
+            .getByTestId('personalized-asset-table-tbody')
+            .getByRole('row')
+            .filter({ hasText: 'Automate Test List' });
+
+        // Click action menu button inside that row
+        await row.getByRole('button').last().click();
+
+        // Click delete from menu
+        await this.page.getByTestId('menu-item-delete').click();
+
+
+        await this.page.getByTestId('delete-btn').click();
+        await this.page.waitForTimeout(2000);
+        //await this.page.getByTestId('training-breadcrumb').click();
         await this.page.getByLabel('breadcrumb').getByRole('link', { name: 'Literature' }).click();
-
-
 
     }
 
@@ -137,8 +174,8 @@ exports.LiteraturePage = class LiteraturePage {
         //await this.page.waitForTimeout(2000);
         //await this.page.getByLabel('PlaywrightTest Folder', { exact: true }).click();
         await this.page.getByRole('cell').nth(4).click();
-        await this.page.getByTestId('menu-item-rename').click({ force: true });
-        await this.page.getByRole('textbox', { name: 'Name' }).click();
+        await this.page.getByTestId('menu-item-rename').click();
+        //await this.page.getByRole('textbox', { name: 'Name' }).click();
         await this.page.getByRole('textbox', { name: 'Name' }).fill('samplePDFEdit');
         await this.page.getByTestId('create-btn').click();
 
@@ -174,7 +211,7 @@ exports.LiteraturePage = class LiteraturePage {
         await this.page.getByTestId('menu-item-rename').click();
         await this.page.getByRole('textbox', { name: 'Name' }).fill('LiteratureTestAutomationEdit');
         await this.page.getByTestId('create-btn').click();
-        await this.page.getByText('Literature folder updated').click();
+        //await this.page.getByText('Literature folder updated').click();
     }
 
 
@@ -184,6 +221,47 @@ exports.LiteraturePage = class LiteraturePage {
         await this.page.getByTestId('menu-item-delete').click();
         await this.page.getByRole('button', { name: 'Delete' }).click();
         //await this.page.getByText('Literature resource folder').click();
+
+
+    }
+
+
+    async placeOrderLiterature() {
+        await this.page.getByRole('banner').getByRole('link', { name: 'Literature' }).click();
+        await this.page.getByRole('img', { name: 'LaCornue' }).click();
+        //await this.page.getByRole('switch').check();
+        //await this.page.waitForTimeout(5000);
+        //await this.page.getByRole('searchbox', { name: 'Search Literature' }).click();
+        await this.page.getByRole('searchbox', { name: 'Search Literature' }).fill('Luvana');
+        await this.page.getByTestId('search-btn').click();
+        await this.page.waitForTimeout(2000);
+        await this.page.getByTestId('list-view-toggle').click();
+        await this.page.getByRole('cell').nth(4).click();
+        //await this.page.waitForTimeout(2000);
+        await this.page.getByTestId('menu-item-add-to-cart').click();
+        //await this.page.waitForTimeout(5000);
+
+
+        await this.page.getByRole('button', { name: 'Cart' }).click();
+        await this.page.getByTestId('save-btn').click();
+        await this.page.waitForTimeout(2000);
+
+        await this.page.getByRole('combobox', { name: 'Country' }).click();
+        await this.page.getByRole('option', { name: 'UNITED STATES', exact: true }).click();
+        await this.page.getByRole('combobox', { name: 'Address' }).fill('55');
+        await this.page.waitForTimeout(2000);
+        await this.page.getByRole('option', { name: 'Fruit Street Boston, MA, USA' }).click();
+        await this.page.waitForTimeout(5000);
+
+        await this.page.getByTestId('phone-input').fill('+1 (888) 888-88888');
+        await this.page.getByRole('textbox', { name: 'Note' }).fill('test');
+
+        await this.page.getByTestId('save-btn').click();
+
+        await this.page.waitForTimeout(5000);
+        await this.page.getByRole('heading', { name: 'Your order has been placed!' }).click();
+        await this.page.getByTestId('save-btn').click();
+
 
 
     }

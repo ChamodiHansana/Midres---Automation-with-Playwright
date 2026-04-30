@@ -8,7 +8,7 @@ import { TrainingPage } from '../../pages/training';
 
 test('Login to the application', async({ page }) => {
 
-    test.setTimeout(12000000);
+    test.setTimeout(1000000);
 
     const Login = new LoginPage(page);
     const Dashboard = new DashboardPage(page);
@@ -49,6 +49,8 @@ test('Login to the application', async({ page }) => {
     await page.waitForTimeout(2000);
     await SpecSheets.addToFavoritesSpecSheets();
     await page.waitForTimeout(2000);
+    await SpecSheets.deleteMyListFolderSpecSheets();
+    await page.waitForTimeout(2000);
     await SpecSheets.navigateToBrandFolderSpecSheets();
     await page.waitForTimeout(2000);
     await SpecSheets.tagFilesSpecSheets();
@@ -86,6 +88,8 @@ test('Login to the application', async({ page }) => {
     await page.waitForTimeout(2000);
     await Literature.addToFavoritesLiterature();
     await page.waitForTimeout(2000);
+    await Literature.deleteMyListFolderLierature();
+    await page.waitForTimeout(2000);
     await Literature.navigateToBrandFolderLiterature();
     await page.waitForTimeout(2000);
     await Literature.tagFilesLiterature();
@@ -100,6 +104,12 @@ test('Login to the application', async({ page }) => {
     await page.waitForTimeout(2000);
     await Literature.deleteFoldersLiterature();
     await page.waitForTimeout(2000);
+
+
+    await Literature.placeOrderLiterature();
+    await page.waitForTimeout(2000);
+
+
 
 
 
@@ -123,6 +133,8 @@ test('Login to the application', async({ page }) => {
     await BrandAssets.shareFilesBrandAssets();
     await page.waitForTimeout(2000);
     await BrandAssets.addToFavoritesBrandAssets();
+    await page.waitForTimeout(2000);
+    await BrandAssets.deleteMyListFolderBrandAssets();
     await page.waitForTimeout(2000);
     await BrandAssets.navigateToBrandFolderBrandAssets();
     await page.waitForTimeout(2000);
@@ -161,8 +173,8 @@ test('Login to the application', async({ page }) => {
     await page.waitForTimeout(2000);
     await Training.addToFavoritesTraining();
     await page.waitForTimeout(2000);
-    //await Training.deleteMyListFolderTraining();
-    //await page.waitForTimeout(2000);
+    await Training.deleteMyListFolderTraining();
+    await page.waitForTimeout(2000);
     await Training.navigateToBrandFolderTraining();
     await page.waitForTimeout(2000);
     await Training.tagFilesTraining();
@@ -177,6 +189,7 @@ test('Login to the application', async({ page }) => {
     await page.waitForTimeout(2000);
     await Training.deleteFoldersTraining();
     await page.waitForTimeout(2000);
+
 
 
 
