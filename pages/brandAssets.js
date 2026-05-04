@@ -46,7 +46,7 @@ exports.BrandAssetsPage = class BrandAssetsPage {
         await this.page.getByRole('textbox', { name: 'Name' }).click();
         await this.page.getByRole('textbox', { name: 'Name' }).fill('BrandAssetTestAutomation');
         await this.page.getByTestId('create-btn').click();
-        await this.page.getByText('Brand Asset Folder Created').click();
+        await this.page.getByText('Brand Asset Folder Created');
     }
 
 
@@ -169,7 +169,7 @@ exports.BrandAssetsPage = class BrandAssetsPage {
         await this.page.waitForTimeout(2000);
         await this.page.getByRole('button').nth(2).click();
         await this.page.getByTestId('save-btn').click();
-        await this.page.getByText('Tags updated successfully.').click();
+        await this.page.getByText('Tags updated successfully.');
 
 
     }

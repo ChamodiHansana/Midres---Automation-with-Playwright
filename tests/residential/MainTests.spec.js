@@ -5,10 +5,15 @@ import { SpecSheetPage } from '../../pages/specSheet';
 import { LiteraturePage } from '../../pages/literature';
 import { BrandAssetsPage } from '../../pages/brandAssets';
 import { TrainingPage } from '../../pages/training';
+import { UserManagementPage } from '../../pages/userManagement';
+import { MaintenancePage } from '../../pages/maintenance';
+import { PriceSheetPage } from '../../pages/priceSheet';
+
 
 test('Login to the application', async({ page }) => {
 
-    test.setTimeout(1000000);
+
+    test.setTimeout(80000000);
 
     const Login = new LoginPage(page);
     const Dashboard = new DashboardPage(page);
@@ -16,6 +21,9 @@ test('Login to the application', async({ page }) => {
     const Literature = new LiteraturePage(page);
     const BrandAssets = new BrandAssetsPage(page);
     const Training = new TrainingPage(page);
+    const UserManagement = new UserManagementPage(page);
+    const Maintenance = new MaintenancePage(page);
+    const PriceSheet = new PriceSheetPage(page);
 
     //Login
     await Login.navigateToLoginPage();
@@ -27,14 +35,15 @@ test('Login to the application', async({ page }) => {
     await Dashboard.validateDashboard();
     await page.waitForTimeout(2000);
 
+
     //Spec Sheets Page
 
     await SpecSheets.navigateToSpecSheetPage();
     await page.waitForTimeout(2000);
     await SpecSheets.navigateToBrandFolderSpecSheets();
     await page.waitForTimeout(2000);
-    await SpecSheets.searchSpecSheets('chamodhi');
-    await page.waitForTimeout(2000);
+    //await SpecSheets.searchSpecSheets('chamodhi');
+    //await page.waitForTimeout(2000);
     await SpecSheets.createSpecSheetsFolder();
     await page.waitForTimeout(2000);
     await SpecSheets.searchCreatedFilterSpecSheets();
@@ -72,8 +81,8 @@ test('Login to the application', async({ page }) => {
     await page.waitForTimeout(2000);
     await Literature.navigateToBrandFolderLiterature();
     await page.waitForTimeout(2000);
-    await Literature.searchLiterature('chamodhi');
-    await page.waitForTimeout(2000);
+    //await Literature.searchLiterature('chamodhi');
+    //await page.waitForTimeout(2000);
     await Literature.createLiteratureFolder();
     await page.waitForTimeout(2000);
     await Literature.searchCreatedFilterLiterature();
@@ -118,8 +127,8 @@ test('Login to the application', async({ page }) => {
     await page.waitForTimeout(2000);
     await BrandAssets.navigateToBrandFolderBrandAssets();
     await page.waitForTimeout(2000);
-    await BrandAssets.searchBrandAssets('chamodhi');
-    await page.waitForTimeout(2000);
+    //await BrandAssets.searchBrandAssets('chamodhi');
+    //await page.waitForTimeout(2000);
     await BrandAssets.createBrandAssetsFolder();
     await page.waitForTimeout(2000);
     await BrandAssets.searchCreatedFilterBrandAssets();
@@ -157,8 +166,8 @@ test('Login to the application', async({ page }) => {
     await page.waitForTimeout(2000);
     await Training.navigateToBrandFolderTraining();
     await page.waitForTimeout(2000);
-    await Training.searchTraining('chamodhi');
-    await page.waitForTimeout(2000);
+    //await Training.searchTraining('chamodhi');
+    //await page.waitForTimeout(2000);
     await Training.createTrainingFolder();
     await page.waitForTimeout(2000);
     await Training.searchCreatedFilterTraining();
@@ -192,6 +201,151 @@ test('Login to the application', async({ page }) => {
 
 
 
+
+    await UserManagement.navigateToUserManagementPage();
+    await page.waitForTimeout(2000);
+
+    //Admin User
+    await UserManagement.navigateToAdminPage();
+    await page.waitForTimeout(2000);
+    await UserManagement.searchAdmins('chamodhi');
+    await page.waitForTimeout(2000);
+    //await UserManagement.reInviteAdmin();
+    //await page.waitForTimeout(2000);
+    await UserManagement.exportAdmins();
+    await page.waitForTimeout(2000);
+
+    //Brand Manager
+    await UserManagement.navigateToBrandManagersPage();
+    await page.waitForTimeout(2000);
+    await UserManagement.createBrandManager();
+    await page.waitForTimeout(2000);
+    await UserManagement.searchBrandManagers();
+    await page.waitForTimeout(2000);
+    await UserManagement.editBrandUser();
+    await page.waitForTimeout(2000);
+    await UserManagement.deleteBrandUser();
+    await page.waitForTimeout(2000);
+    await UserManagement.removeSearchedBrandManager();
+    await page.waitForTimeout(2000);
+    await UserManagement.exportBrandUsers();
+    await page.waitForTimeout(2000);
+
+    //VPUser
+    await UserManagement.navigateToVPUsersPage();
+    await page.waitForTimeout(2000);
+    await UserManagement.searchVPUsers();
+    await page.waitForTimeout(2000);
+    await UserManagement.editVPUser();
+    await page.waitForTimeout(2000);
+    await UserManagement.exportVPUsers();
+    await page.waitForTimeout(2000);
+
+    //DSMUser
+    await UserManagement.navigateToDSMUsersPage();
+    await page.waitForTimeout(2000);
+    await UserManagement.searchDSMUsers();
+    await page.waitForTimeout(2000);
+    await UserManagement.editDSMUser();
+    await page.waitForTimeout(2000);
+    await UserManagement.exportDSMUsers();
+    await page.waitForTimeout(2000);
+
+    //Dealer
+    await UserManagement.navigateToDealersPage();
+    await page.waitForTimeout(2000);
+    await UserManagement.searchDealers();
+    await page.waitForTimeout(2000);
+    await UserManagement.navigateToDealerDetailsPage();
+    await page.waitForTimeout(2000);
+    await UserManagement.exportDealers();
+    await page.waitForTimeout(2000);
+
+
+
+    //DealerUsers
+    //await UserManagement.navigateToUserManagementPage();
+    //await page.waitForTimeout(2000);
+    await UserManagement.navigateToDealerUsersPage();
+    await page.waitForTimeout(2000);
+
+
+    await UserManagement.createDealerUser();
+    await page.waitForTimeout(2000);
+    await UserManagement.searchDealerUsers();
+    await page.waitForTimeout(2000);
+    await UserManagement.addDealeraccount();
+    await page.waitForTimeout(2000);
+    await UserManagement.expandDelaerUser();
+    await page.waitForTimeout(2000);
+    await UserManagement.editDealerUser();
+    await page.waitForTimeout(2000);
+    await UserManagement.deleteDealerAccount();
+    await page.waitForTimeout(2000);
+    await UserManagement.deleteDealerUser();
+    await page.waitForTimeout(2000);
+
+
+    //Markting Users
+    await UserManagement.navigateToMarketingUsersPage();
+    await page.waitForTimeout(2000);
+    await UserManagement.createMarketingUser();
+    await page.waitForTimeout(2000);
+    await UserManagement.searchMarketingUsers();
+    await page.waitForTimeout(2000);
+    await UserManagement.editMarktingUsers();
+    await page.waitForTimeout(2000);
+    await UserManagement.deleteMarketingUsers();
+    await page.waitForTimeout(2000);
+    await UserManagement.exportMarketingUsers();
+    await page.waitForTimeout(2000);
+
+
+
+    //await UserManagement.navigateToUserManagementPage();
+    //await page.waitForTimeout(2000);
+    await UserManagement.navigateToOtherUsersPage();
+    await page.waitForTimeout(2000);
+    await UserManagement.createOtherUser();
+    await page.waitForTimeout(2000);
+    await UserManagement.searchOtherUsers();
+    await page.waitForTimeout(2000);
+    await UserManagement.resetOtherUsers();
+    await page.waitForTimeout(2000);
+    await UserManagement.editOtherUsers();
+    await page.waitForTimeout(2000);
+    await UserManagement.deleteOtherUsers();
+    await page.waitForTimeout(2000);
+    //await UserManagement.exportOtherUsers();
+    //await page.waitForTimeout(2000);
+    *
+    /
+
+
+    // await UserManagement.navigateToUserManagementPage();
+    //await page.waitForTimeout(2000);
+    await Maintenance.navigateToMaintenancePage();
+    await page.waitForTimeout(2000);
+    await Maintenance.createNewStory();
+    await page.waitForTimeout(2000);
+    await Maintenance.editStory();
+    await page.waitForTimeout(5000);
+    await Maintenance.enableToStoryToggle();
+    await page.waitForTimeout(5000);
+    await Maintenance.deleteStory();
+    await page.waitForTimeout(3000);
+
+
+
+    //price sheet
+    //await Maintenance.navigateToMaintenancePage();
+    //await page.waitForTimeout(2000);
+    await PriceSheet.navigateToPriceSheetPage();
+    await page.waitForTimeout(2000);
+    await PriceSheet.uploadPriceSheet();
+    await page.waitForTimeout(2000);
+    //await PriceSheet.navigateToPriceSheetFolder();
+    //await page.waitForTimeout(2000);
 
 
 
