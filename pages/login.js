@@ -24,8 +24,8 @@ exports.LoginPage = class LoginPage {
         });
     }
 
-    async navigateToLoginPage() {
-        await this.page.goto('https://qa-portal.middlebyresidential.com/');
+    async navigateToLoginPage(url) {
+        await this.page.goto(url);
 
     }
 

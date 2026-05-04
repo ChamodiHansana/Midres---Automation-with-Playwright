@@ -8,7 +8,7 @@ import { TrainingPage } from '../../pages/training';
 import { UserManagementPage } from '../../pages/userManagement';
 import { MaintenancePage } from '../../pages/maintenance';
 import { PriceSheetPage } from '../../pages/priceSheet';
-
+import { testData } from './testData';
 
 test('Login to the application', async({ page }) => {
 
@@ -26,9 +26,9 @@ test('Login to the application', async({ page }) => {
     const PriceSheet = new PriceSheetPage(page);
 
     //Login
-    await Login.navigateToLoginPage();
+    await Login.navigateToLoginPage(testData.app.url);
     await page.waitForTimeout(2000);
-    await Login.login('chamodhi.h@expernetic.com', 'Test@123');
+    await Login.login(testData.login.username, testData.login.password);
     await page.waitForTimeout(2000);
     await Login.validateLoginSuccess();
     await page.waitForTimeout(2000);
@@ -318,8 +318,6 @@ test('Login to the application', async({ page }) => {
     await page.waitForTimeout(2000);
     //await UserManagement.exportOtherUsers();
     //await page.waitForTimeout(2000);
-    *
-    /
 
 
     // await UserManagement.navigateToUserManagementPage();
