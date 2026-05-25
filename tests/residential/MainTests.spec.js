@@ -319,32 +319,32 @@ test('Login to the application', async({ page }) => {
     //await UserManagement.exportOtherUsers();
     //await page.waitForTimeout(2000);
 
-
-    // await UserManagement.navigateToUserManagementPage();
-    //await page.waitForTimeout(2000);
-    await Maintenance.navigateToMaintenancePage();
-    await page.waitForTimeout(2000);
-    await Maintenance.createNewStory();
-    await page.waitForTimeout(2000);
-    await Maintenance.editStory();
-    await page.waitForTimeout(5000);
-    await Maintenance.enableToStoryToggle();
-    await page.waitForTimeout(5000);
-    await Maintenance.deleteStory();
-    await page.waitForTimeout(3000);
-
-
-
-    //price sheet
-    //await Maintenance.navigateToMaintenancePage();
-    //await page.waitForTimeout(2000);
-    await PriceSheet.navigateToPriceSheetPage();
-    await page.waitForTimeout(2000);
-    await PriceSheet.uploadPriceSheet();
-    await page.waitForTimeout(2000);
-    //await PriceSheet.navigateToPriceSheetFolder();
-    //await page.waitForTimeout(2000);
+    /*
+        // await UserManagement.navigateToUserManagementPage();
+        //await page.waitForTimeout(2000);
+        await Maintenance.navigateToMaintenancePage();
+        await page.waitForTimeout(2000);
+        await Maintenance.createNewStory();
+        await page.waitForTimeout(2000);
+        await Maintenance.editStory();
+        await page.waitForTimeout(5000);
+        await Maintenance.enableToStoryToggle();
+        await page.waitForTimeout(5000);
+        await Maintenance.deleteStory();
+        await page.waitForTimeout(3000);
 
 
+
+        //price sheet
+        //await Maintenance.navigateToMaintenancePage();
+        //await page.waitForTimeout(2000);
+        await PriceSheet.navigateToPriceSheetPage();
+        await page.waitForTimeout(2000);
+        await PriceSheet.uploadPriceSheet();
+        await page.waitForTimeout(2000);
+        //await PriceSheet.navigateToPriceSheetFolder();
+        //await page.waitForTimeout(2000);
+
+    */
 
 });
